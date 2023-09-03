@@ -1,0 +1,22 @@
+@model PlatformDemo.Models.Selectable<PlatformDemo.Core.Model.Customer>
+
+<tr data-id="@Model.Item.Id">
+    <td>@Model.Item.Name</td>
+    <td>@Model.Item.PhoneNumber</td>
+    <td>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#toggleOrders-@Model.Item.Id" role="button" aria-expanded="false" aria-controls="collapseExample">
+            $ @Model.Item.Orders?.Sum(x => x.Amount)
+        </a>
+    </td>
+</tr>
+
+<tr class="collapse" id="toggleOrders-@Model.Item.Id">
+    <td></td>
+    <td></td>
+    <td>
+        <ul class="list-group">
+            @Html.Raw(string.Join("", Model.Item.Orders?.Select(x => $"<li class=\"list-group-item\">ORDER #: {x.OrderNumber} - AMOUNT: {x.Amount}</li>") ?? new List<string>()))
+        </ul>
+    </td>
+</tr>
+

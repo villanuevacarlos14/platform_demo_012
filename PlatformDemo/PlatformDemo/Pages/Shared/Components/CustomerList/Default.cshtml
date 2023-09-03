@@ -1,0 +1,15 @@
+@model IEnumerable<PlatformDemo.Core.Model.Customer>
+<table class="table table-bordered table-striped">
+    <thead>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th>Total</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @await Component.InvokeAsync("CustomerListRow", item);
+        }
+    </tbody>
+</table>
+
